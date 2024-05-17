@@ -3,6 +3,7 @@ package main
 import (
 	"taskApi/app/configs"
 	"taskApi/app/databases"
+	"taskApi/app/migrations"
 	"taskApi/app/routers"
 
 	"github.com/labstack/echo/v4"
@@ -12,6 +13,9 @@ import (
 func main() {
 	cfg := configs.InitConfig()
 	dbMysql := databases.InitDBMysql(cfg)
+
+	migrations.InitDBMigration(dbMysql)
+
 	// dbPosgres := databases.InitDBPosgres(cfg)
 
 	// create new instance echo
